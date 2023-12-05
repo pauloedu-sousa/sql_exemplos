@@ -1,0 +1,10 @@
+CREATE PROCEDURE CompradosDia
+AS
+BEGIN
+    SELECT 
+        Data_Compra,
+        ID_Produto,
+        SUM(Quantidade) as Quantidade_Total
+    FROM 
+        Vendas
+END;
