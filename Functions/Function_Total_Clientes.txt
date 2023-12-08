@@ -1,0 +1,45 @@
+ -- Uma loja tem um banco de dados que contém todo o controle de vendas de produtos e de cadastro de clientes. 
+ -- Pensando nisso, crie uma função para somar todos os clientes que foram cadastrados na loja durante um dia.
+
+
+ -- Cria a tabela clientes.
+ 
+CREATE TABLE clientes (
+    id_cliente INT PRIMARY KEY,
+    nome VARCHAR(50),
+    data_cadastro DATE
+);
+
+----------------------------------------------------------------------------
+
+
+-- Insere dados na tabela clientes
+
+INSERT INTO clientes (id_cliente, nome, data_cadastro) VALUES
+(1, 'João Silva', '2023-12-08'),
+(2, 'Maria Oliveira', '2023-12-08'),
+(3, 'Carlos Santos', '2023-12-07'),
+(4, 'Ana Souza', '2023-12-08'),
+(5, 'Fernanda Lima', '2023-12-07');
+
+
+----------------------------------------------------------------------------
+
+
+ -- Função para retornar os registros de cadastro de clientes do dia pesquisado
+
+CREATE FUNCTION contar_clientes_por_dia(data_pesquisa DATE) RETURNS INT
+BEGIN
+    DECLARE total_clientes INT;
+    
+    SELECT COUNT(*) INTO total_clientes
+    FROM clientes
+    WHERE data_cadastro = data_pesquisa;
+
+
+ -- Retorna o resultado.
+ 
+    RETURN total_clientes;
+	
+END;
+
