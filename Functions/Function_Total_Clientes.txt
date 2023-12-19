@@ -26,12 +26,13 @@ INSERT INTO clientes (id_cliente, nome, data_cadastro) VALUES
 ----------------------------------------------------------------------------
 
 
- -- Função para retornar os registros de cadastro de clientes do dia pesquisado
+ -- Função corrigida e testada para retornar os registros de cadastro de clientes do dia pesquisado
 
-CREATE FUNCTION contar_clientes_por_dia(data_pesquisa DATE) RETURNS INT
+
+CREATE FUNCTION contar_clientes_por_dia(data_pesquisa DATE) 
+RETURNS INT AS $$
+DECLARE total_clientes INT;
 BEGIN
-    DECLARE total_clientes INT;
-    
     SELECT COUNT(*) INTO total_clientes
     FROM clientes
     WHERE data_cadastro = data_pesquisa;
